@@ -50,6 +50,8 @@ class _HomePageState extends State<HomePage> {
 
   // Widget untuk header
   Widget _buildHeader() {
+    final LoginController controller = Get.put(LoginController());
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.w),
       child: Column(
@@ -57,33 +59,48 @@ class _HomePageState extends State<HomePage> {
         children: [
           Container(
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CircleAvatar(
-                  backgroundColor: Color(0xffBEC3E6),
-                  radius: 35.r,
-                  child: Text(
-                    "Y",
-                    style: TextStyle(fontSize: 35.w, color: Colors.white),
-                  ),
-                ),
-                SizedBox(
-                  width: 18.w,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Text(
-                      'Yosi',
-                      style: TextStyle(
-                          fontSize: 22.w, fontWeight: FontWeight.bold),
+                    CircleAvatar(
+                      backgroundColor: Color(0xffBEC3E6),
+                      radius: 35.r,
+                      child: Text(
+                        "Y",
+                        style: TextStyle(fontSize: 35.w, color: Colors.white),
+                      ),
                     ),
-                    Text(
-                      'Web Developer',
-                      style: TextStyle(
-                          fontSize: 9.w, fontWeight: FontWeight.normal),
+                    SizedBox(
+                      width: 18.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Yosi',
+                          style: TextStyle(
+                              fontSize: 22.w, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'Web Developer',
+                          style: TextStyle(
+                              fontSize: 9.w, fontWeight: FontWeight.normal),
+                        ),
+                      ],
                     ),
                   ],
                 ),
+                IconButton(
+                  icon: Icon(Icons.logout), // Ikon yang akan ditampilkan
+                  color: Colors.black, // Warna ikon
+                  iconSize: 40.0, // Ukuran ikon
+                  onPressed: () {
+                    // Aksi yang dijalankan ketika tombol ditekan
+
+                    controller.logout();
+                  },
+                )
               ],
             ),
           ),
@@ -162,18 +179,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final LoginController controller = Get.put(LoginController());
     ScrollController _scrollController = ScrollController();
     _scrollController.addListener(() => _scrollListener(_scrollController));
 
     return Scaffold(
       body: RefreshIndicator(
-          onRefresh: onRefresh,
-          child: Column(
-            children: [
-              items.isEmpty && !isLoading
-                  ? _buildEmptyState() // Jika data kosong dan tidak loading
-                  : ListView.builder(
+        onRefresh: onRefresh,
+        child: items.isEmpty && !isLoading
+            ? _buildEmptyState() // Jika data kosong dan tidak loading
+            : Column(
+                children: [
+                  Container(
+                    height: 708.w,
+                    child: ListView.builder(
                       controller: _scrollController,
                       itemCount: items.length +
                           2, // Tambahkan 1 untuk header dan 1 untuk loading
@@ -192,9 +210,41 @@ class _HomePageState extends State<HomePage> {
                         }
                       },
                     ),
-              Container()
-            ],
-          )),
+                  ),
+                  Container(
+                    height: 82.w,
+                    color: Color(0xffD9D9D9),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.assignment,
+                              size: 36.w,
+                            ),
+                            Text("Jadwal \nRuang Meeting"),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 15.w,
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.edit_square,
+                              size: 36.w,
+                            ),
+                            Text("Booking \nRuang Meeting"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+      ),
     );
   }
 }
