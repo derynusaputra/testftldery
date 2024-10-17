@@ -12,7 +12,6 @@ class BookingMeetPage extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            Text("Ruangan Meeting"),
             TextFormField(
               controller: _nameC,
               decoration: InputDecoration(

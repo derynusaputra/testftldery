@@ -9,19 +9,44 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('MyPage')),
+        // appBar: AppBar(title: Text('MyPage')),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          SizedBox(
+            height: 50.h,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 50.h,
+              Text(
+                "Selamat Datang",
+                style: TextStyle(
+                    fontSize: 34.w,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
               ),
-              Text("Selamat Datang\nDi Aplikasi Ruang Meeting "),
-              ElevatedButton(
-                  onPressed: () => {Get.to(SignInPage())}, child: Text("Next"))
+              Text(
+                "Di Aplikasi",
+                style: TextStyle(
+                    fontSize: 22.w,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Ruang Meeting",
+                style: TextStyle(
+                    fontSize: 30.w,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
             ],
           ),
-        ));
+          ElevatedButton(
+              onPressed: () => {Get.to(SignInPage())}, child: Text("Next"))
+        ],
+      ),
+    ));
   }
 }
