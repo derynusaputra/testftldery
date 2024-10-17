@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ftl_dery/pages/auth/login_controller.dart';
 import 'package:ftl_dery/pages/auth/repo.dart';
+import 'package:ftl_dery/pages/meeting/booking_meet_page.dart';
+import 'package:ftl_dery/pages/meeting/jadwa_meet_page.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
@@ -218,26 +220,36 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.assignment,
-                              size: 36.w,
-                            ),
-                            Text("Jadwal \nRuang Meeting"),
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Get.to(JadwalMeetPage());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.assignment,
+                                size: 36.w,
+                              ),
+                              Text("Jadwal \nRuang Meeting"),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           width: 15.w,
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.edit_square,
-                              size: 36.w,
-                            ),
-                            Text("Booking \nRuang Meeting"),
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Get.to(BookingMeetPage());
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.edit_square,
+                                size: 36.w,
+                              ),
+                              Text("Booking \nRuang Meeting"),
+                            ],
+                          ),
                         ),
                       ],
                     ),
