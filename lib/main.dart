@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ftl_dery/InfinityScroll/MyHome.dart';
 import 'package:ftl_dery/pages/auth/login_controller.dart';
 import 'package:ftl_dery/pages/auth/sign_in.dart';
 import 'package:ftl_dery/pages/home/home_page.dart';
@@ -37,7 +36,6 @@ class MyApp extends StatelessWidget {
                 bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                     selectedItemColor: Colors.white),
               ),
-              // home: MyHomePage());
               home: Obx(() {
                 // Jika user sudah login, arahkan ke HomeScreen
                 return authController.isLoggedIn.value
