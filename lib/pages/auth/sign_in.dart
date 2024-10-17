@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ftl_dery/pages/auth/login_controller.dart';
+import 'package:ftl_dery/pages/auth/repo.dart';
 import 'package:get/get.dart';
 
 class SignInPage extends StatelessWidget {
@@ -32,12 +33,13 @@ class SignInPage extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Panggil fungsi login
-                // controller.login(
-                //     usernameController.text, passwordController.text);
-
-                controller.logins(
-                    usernameController.text, passwordController.text);
+                if (usernameController.text != "" &&
+                    usernameController.text != "") {
+                  controller.logins(
+                      usernameController.text, passwordController.text);
+                } else {
+                  Get.snackbar("Warning", "Username dan Password Wajib diisi");
+                }
               },
               child: Text('Login'),
             ),
